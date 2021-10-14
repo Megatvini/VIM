@@ -11,8 +11,8 @@ SplitDataset <- function(sub_test_X, sub_test_Y, split_var, split_point) {
     result$right_y <- sub_test_Y[right_index, , drop=FALSE]
   } else {
     # TODO split factor features
-    result$left <- dataset
-    result$right <- dataset
+    # result$left <- dataset
+    # result$right <- dataset
   }
   result
 }
