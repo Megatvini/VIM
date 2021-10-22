@@ -1,12 +1,16 @@
-Package: VIM
+Package: MulvariateRandomForest_VarImp
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Sikdar", "Sharmistha", "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
+    person("Hooker", "Giles", "ghooker@berkeley.edu",role="aut"),
+    person("Kadiyali","Vrinda", "kadiayali@cornell.edu",role="cre"),
+    person("Dogonadze","Nika", "nika.dogonadze@toptal.com",role="cre")
+Description: Calculates post-hoc variable importance measures for multivariate random forests. 
+These are given by split improvement for splits defined by feature j as measured using user-defined (ie training or test) examples.
+Importances can also be calculated on a per-outcome variable basis using the change in predictions for each split. Both measures can be
+optionally threshholded to include only splits that produce statistically significant changes as measured by an F-test. 
+License: `use_gpl3_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
