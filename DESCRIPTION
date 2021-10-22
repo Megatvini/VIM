@@ -1,5 +1,5 @@
 Package: MulvariateRandomForest_VarImp
-Title: What the Package Does (One Line, Title Case)
+Title: Variable Imporances for Multivariate Random Forests
 Version: 0.0.0.9000
 Authors@R: 
     person("Sikdar", "Sharmistha", "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
