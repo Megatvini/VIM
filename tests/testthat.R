@@ -1,4 +1,4 @@
 library(testthat)
-library(VIM)
+library(MulvariateRandomForestVarImp)
 
-test_check("VIM")
+test_check("MulvariateRandomForestVarImp")

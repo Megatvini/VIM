@@ -1,16 +1,16 @@
-Package: MulvariateRandomForest_VarImp
+Package: MulvariateRandomForestVarImp
 Title: Variable Imporances for Multivariate Random Forests
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
-    person("Sikdar", "Sharmistha", "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
-    person("Hooker", "Giles", "ghooker@berkeley.edu",role="aut"),
-    person("Kadiyali","Vrinda", "kadiayali@cornell.edu",role="cre"),
-    person("Dogonadze","Nika", "nika.dogonadze@toptal.com",role="cre")
+    c(person("Sikdar", "Sharmistha", email = "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
+    person("Hooker", "Giles", email = "ghooker@berkeley.edu", role="aut"),
+    person("Kadiyali","Vrinda", email = "kadiayali@cornell.edu", role="ctb"),
+    person("Dogonadze","Nika", email = "nika.dogonadze@toptal.com", role="cre"))
 Description: Calculates post-hoc variable importance measures for multivariate random forests. 
-These are given by split improvement for splits defined by feature j as measured using user-defined (ie training or test) examples.
-Importances can also be calculated on a per-outcome variable basis using the change in predictions for each split. Both measures can be
-optionally threshholded to include only splits that produce statistically significant changes as measured by an F-test. 
-License: `use_gpl3_license()`
+  These are given by split improvement for splits defined by feature j as measured using user-defined (ie training or test) examples.
+  Importances can also be calculated on a per-outcome variable basis using the change in predictions for each split. Both measures can be
+  optionally threshholded to include only splits that produce statistically significant changes as measured by an F-test. 
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
