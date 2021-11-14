@@ -10,6 +10,8 @@
 #' to min_leaf samples, then there will be no splitting in that node and this node
 #' will be considered as a leaf node. Valid input is positive integer, which is less
 #' than or equal to M (number of training samples)
+#' @param critical_F critical F test value threshold for split significant testing. If defualt value of NaN is specified,
+#' all the node splits will contrbute to result.
 #'
 #' @return Vector of size N x 1
 #' @export
@@ -19,7 +21,7 @@
 #' Y = matrix(runif(50*5), 50, 5)
 #' MeanSplitImprovement(X, Y)
 
-MeanSplitImprovement <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_trees=100, m_feature=ncol(X), min_leaf=10) {
+MeanSplitImprovement <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_trees=100, m_feature=ncol(X), min_leaf=10, critical_F=NaN) {
   if (ncol(Y) == 1) {
     command = 1
   } else {
@@ -38,7 +40,7 @@ MeanSplitImprovement <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_tre
     test_X <- X[test_index, ]
     test_Y <- Y[test_index, ]
 
-    GetImportanceMeasuresForSingleTree(tree, test_X, test_Y, inv_cov_y, command)
+    GetImportanceMeasuresForSingleTree(tree, test_X, test_Y, inv_cov_y, command, critical_F)
   })
   result <- apply(treeMeasures, 1, mean)
   result[is.nan(result)] <- 0
@@ -58,8 +60,12 @@ SplitImprovementMeasure <- function(y_test_left, y_test_right, inv_cov_y, comman
 }
 
 
-GetImportanceMeasuresForSingleTree <- function(tree, test_X, test_Y, inv_cov_y, command) {
+GetImportanceMeasuresForSingleTree <- function(tree, test_X, test_Y, inv_cov_y, command, critical_f) {
   num_vars <- ncol(test_X)
+  dim_y <- ncol(test_Y)
+
+  predict_test_array <- MultivariateRandomForest::single_tree_prediction(tree, X_test=test_X, Variable_number=dim_y)
+  var_covar_parentnode <- stats::cov((test_Y - predict_test_array))
 
   all_node_measures <- array(0, num_vars)
 
@@ -74,10 +80,23 @@ GetImportanceMeasuresForSingleTree <- function(tree, test_X, test_Y, inv_cov_y, 
 
       spl_measure <- SplitImprovementMeasure(split_res$left_y, split_res$right_y, inv_cov_y, command)
 
-      all_node_measures[[split_var]] <<- all_node_measures[[split_var]] + spl_measure
+      if (!is.nan(critical_f)) {
+        n_left <- length(split_res$left_y)
+        n_right <- length(split_res$right_y)
+        mean_leftnode <- apply(split_res$left_y, 2, mean)
+        mean_rightnode <- apply(split_res$right_y, 2, mean)
 
+        hotelling_t2 = (n_left * n_right) / (n_left + n_right) * (
+          t(mean_leftnode - mean_rightnode) %*% MASS::ginv(var_covar_parentnode) %*% (mean_leftnode - mean_rightnode)
+        )
+        f_stat <- (n_left + n_right - dim_y - 1) * (hotelling_t2)^2 / (dim_y * (n_left + n_right - 2))
+        if (!is.nan(f_stat) && f_stat > critical_f) {
+          all_node_measures[[split_var]] <<- all_node_measures[[split_var]] + spl_measure
+        }
+      } else {
+        all_node_measures[[split_var]] <<- all_node_measures[[split_var]] + spl_measure
+      }
       CalculateSplitMeasures(node_split[[5]][[1]], split_res$left_x, split_res$left_y)
-
       CalculateSplitMeasures(node_split[[5]][[2]], split_res$right_x, split_res$right_y)
     }
   }

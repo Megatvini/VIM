@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# VIM
+# MulvariateRandomForestVarImp
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -25,7 +25,7 @@ The goal of VIM is to ...
 You can install the released version of VIM from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("VIM")
+install.packages("MulvariateRandomForestVarImp")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
@@ -39,7 +39,7 @@ devtools::install_github("Megatvini/VIM")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(VIM)
+library(MulvariateRandomForestVarImp)
 ## basic example code
 
 X <- matrix(runif(50*5), 50, 5)

@@ -19,4 +19,7 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
-    MultivariateRandomForest (>= 1.1.5)
+    MultivariateRandomForest (>= 1.1.5),
+    MASS (>= 7.3.0)
+URL: https://github.com/Megatvini/VIM/
+BugReports: https://github.com/Megatvini/VIM/issues

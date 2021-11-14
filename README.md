@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# VIM
+# MulvariateRandomForestVarImp
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -14,7 +14,7 @@ You can install the released version of VIM from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("VIM")
+install.packages("MulvariateRandomForestVarImp")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
@@ -29,7 +29,7 @@ devtools::install_github("Megatvini/VIM")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(VIM)
+library(MulvariateRandomForestVarImp)
 ## basic example code
 
 X <- matrix(runif(50*5), 50, 5)
@@ -38,5 +38,5 @@ Y <- matrix(runif(50*2), 50, 2)
 variable_importace <- MeanSplitImprovement(X, Y)
 
 variable_importace
-#> [1] 0.8357958 1.7116463 2.3208337 1.7992464 1.9904138
+#> [1] 3.5729038 0.7747768 1.3095010 2.0873875 1.0315281
 ```
