@@ -10,13 +10,15 @@
 #' to min_leaf samples, then there will be no splitting in that node and this node
 #' will be considered as a leaf node. Valid input is positive integer, which is less
 #' than or equal to M (number of training samples)
+#' @param critical_F critical F test value threshold for split significant testing. If defualt value of NaN is specified,
+#' all the node splits will contribute to result.
 #'
 #' @return Vector of size N x 1
 #' @export
 #'
 #' @examples
-#' X = matrix(runif(50*100), 50, 100)
-#' Y = matrix(runif(50*5), 50, 5)
+#' X = matrix(runif(50*5), 50, 5)
+#' Y = matrix(runif(50*2), 50, 2)
 #' MeanOutcomeDifference(X, Y)
 MeanOutcomeDifference <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_trees=100, m_feature=ncol(X), min_leaf=10, critical_F=NaN) {
   if (ncol(Y) == 1) {

@@ -32,7 +32,7 @@ will be considered as a leaf node. Valid input is positive integer, which is les
 than or equal to M (number of training samples)}
 
 \item{critical_F}{critical F test value threshold for split significant testing. If defualt value of NaN is specified,
-all the node splits will contrbute to result.}
+all the node splits will contribute to result.}
 }
 \value{
 Vector of size N x 1
@@ -41,7 +41,7 @@ Vector of size N x 1
 Mean Split Improvement Importance Function
 }
 \examples{
-X = matrix(runif(50*100), 50, 100)
-Y = matrix(runif(50*5), 50, 5)
+X = matrix(runif(50*5), 50, 5)
+Y = matrix(runif(50*2), 50, 2)
 MeanSplitImprovement(X, Y)
 }
