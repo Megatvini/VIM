@@ -18,7 +18,7 @@
 #' X = matrix(runif(50*100), 50, 100)
 #' Y = matrix(runif(50*5), 50, 5)
 #' MeanOutcomeDifference(X, Y)
-MeanOutcomeDifference <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_trees=100, m_feature=ncol(X), min_leaf=10) {
+MeanOutcomeDifference <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_trees=100, m_feature=ncol(X), min_leaf=10, critical_F=NaN) {
   if (ncol(Y) == 1) {
     command = 1
   } else {
@@ -39,7 +39,7 @@ MeanOutcomeDifference <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_tr
     test_X <- X[test_index, ]
     test_Y <- Y[test_index, ]
 
-    res <- MeanOutcomeDifferenceForSingleTree(tree, test_X, test_Y, command)
+    res <- MeanOutcomeDifferenceForSingleTree(tree, test_X, test_Y, command, critical_F)
     treeMeasures[tree_index, ,] <<- array(res, c(1, dim(res)))
   })
 
@@ -55,8 +55,12 @@ MeanOutcomeMeasure <- function(y_test_left, y_test_right) {
 }
 
 
-MeanOutcomeDifferenceForSingleTree <- function(tree, test_X, test_Y, command) {
+MeanOutcomeDifferenceForSingleTree <- function(tree, test_X, test_Y, command, critical_f) {
   num_vars <- ncol(test_X)
+  dim_y <- ncol(test_Y)
+
+  predict_test_array <- MultivariateRandomForest::single_tree_prediction(tree, X_test=test_X, Variable_number=dim_y)
+  var_covar_parentnode <- stats::cov((test_Y - predict_test_array))
 
   all_node_measures <- matrix(0, num_vars, ncol(test_Y))
   node_measure_counts <- matrix(0, num_vars)
@@ -71,8 +75,25 @@ MeanOutcomeDifferenceForSingleTree <- function(tree, test_X, test_Y, command) {
       split_res <- SplitDataset(sub_test_X, sub_test_Y, split_var, split_point)
 
       spl_measure <- MeanOutcomeMeasure(split_res$left_y, split_res$right_y)
-      all_node_measures[split_var, ] <<- all_node_measures[split_var, ] + spl_measure
-      node_measure_counts[[split_var]] <<- node_measure_counts[[split_var]] + 1
+
+      if (!is.nan(critical_f)) {
+        n_left <- length(split_res$left_y)
+        n_right <- length(split_res$right_y)
+        mean_leftnode <- apply(split_res$left_y, 2, mean)
+        mean_rightnode <- apply(split_res$right_y, 2, mean)
+
+        hotelling_t2 = (n_left * n_right) / (n_left + n_right) * (
+          t(mean_leftnode - mean_rightnode) %*% MASS::ginv(var_covar_parentnode) %*% (mean_leftnode - mean_rightnode)
+        )
+        f_stat <- (n_left + n_right - dim_y - 1) * (hotelling_t2)^2 / (dim_y * (n_left + n_right - 2))
+        if (!is.nan(f_stat) && f_stat > critical_f) {
+          all_node_measures[split_var, ] <<- all_node_measures[split_var, ] + spl_measure
+          node_measure_counts[[split_var]] <<- node_measure_counts[[split_var]] + 1
+        }
+      } else {
+        all_node_measures[split_var, ] <<- all_node_measures[split_var, ] + spl_measure
+        node_measure_counts[[split_var]] <<- node_measure_counts[[split_var]] + 1
+      }
 
       CalculateSplitMeasures(node_split[[5]][[1]], split_res$left_x, split_res$left_y)
 
