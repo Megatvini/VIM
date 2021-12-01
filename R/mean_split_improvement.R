@@ -43,7 +43,7 @@ MeanSplitImprovement <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_tre
     test_X <- X[test_index, ]
     test_Y <- Y[test_index, ]
 
-    GetImportanceMeasuresForSingleTree(tree, test_X, test_Y, inv_cov_y, command, critical_F)
+    GetImportanceMeasuresForSingleTree(tree, test_X, test_Y, inv_cov_y, command, critical_f)
   })
   result <- apply(treeMeasures, 1, mean)
   result[is.nan(result)] <- 0
