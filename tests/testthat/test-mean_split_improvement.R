@@ -36,9 +36,9 @@ test_that("f-test parameter works", {
   min_leaf = 5
   n_trees = 20
   sample_size = 20
-  f_critical = 2.85
+  alpha_threshold = 0.2
 
-  res <- MeanSplitImprovement(X, Y, sample_size, n_trees, m_feature, min_leaf, critical_F=f_critical)
+  res <- MeanSplitImprovement(X, Y, sample_size, n_trees, m_feature, min_leaf, alpha_threshold)
   expect_length(res, ncol(X))
-  expect_equal(res, c(0.830, 2.407, 3.424, 0.576, 0.778), tolerance=1e-3)
+  expect_equal(res, c(1.0.52, 2.776, 3.662, 0.721, 0.877), tolerance=1e-3)
 })
