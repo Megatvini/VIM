@@ -44,7 +44,7 @@ MeanOutcomeDifference <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_tr
     test_X <- X[test_index, ]
     test_Y <- Y[test_index, ]
 
-    res <- MeanOutcomeDifferenceForSingleTree(tree, test_X, test_Y, command, critical_F)
+    res <- MeanOutcomeDifferenceForSingleTree(tree, test_X, test_Y, command, critical_f)
     treeMeasures[tree_index, ,] <<- array(res, c(1, dim(res)))
   })
 
