@@ -12,7 +12,7 @@
 #' than or equal to M (number of training samples)
 #' @param alpha_threshold threshold for split significant testing. If default value of 0 is specified,
 #' all the node splits will contribute to result, otherwise only those splits with improvement greater
-#' than 1-alpha critical value of an f-statistic do. 
+#' than 1-alpha critical value of an f-statistic do.
 #'
 #' @return Vector of size N x 1
 #' @export
@@ -28,8 +28,8 @@ MeanSplitImprovement <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_tre
   } else {
     command = 2
   }
-  
-  critical_f = qf(1-alpha_threshold, ncol(Y), nrow(Y)-ncol(Y) - 2)
+
+  critical_f = stats::qf(1-alpha_threshold, ncol(Y), nrow(Y)-ncol(Y) - 2)
 
   treeMeasures <- sapply(1:num_trees, function(tree_index){
     train_index <- sample(nrow(X), sample_size)
@@ -83,7 +83,7 @@ GetImportanceMeasuresForSingleTree <- function(tree, test_X, test_Y, inv_cov_y, 
 
       spl_measure <- SplitImprovementMeasure(split_res$left_y, split_res$right_y, inv_cov_y, command)
 
-      if (!is.inf(critical_f)) {
+      if (!is.infinite(critical_f)) {
         n_left <- length(split_res$left_y)
         n_right <- length(split_res$right_y)
         mean_leftnode <- apply(split_res$left_y, 2, mean)

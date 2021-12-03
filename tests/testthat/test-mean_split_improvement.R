@@ -40,5 +40,5 @@ test_that("f-test parameter works", {
 
   res <- MeanSplitImprovement(X, Y, sample_size, n_trees, m_feature, min_leaf, alpha_threshold)
   expect_length(res, ncol(X))
-  expect_equal(res, c(1.0.52, 2.776, 3.662, 0.721, 0.877), tolerance=1e-3)
+  expect_equal(res, c(1.052, 2.776, 3.662, 0.721, 0.877), tolerance=1e-3)
 })

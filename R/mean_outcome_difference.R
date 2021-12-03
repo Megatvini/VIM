@@ -12,7 +12,7 @@
 #' than or equal to M (number of training samples)
 #' @param alpha_threshold threshold for split significant testing. If default value of 0 is specified,
 #' all the node splits will contribute to result, otherwise only those splits with improvement greater
-#' than 1-alpha critical value of an f-statistic do. 
+#' than 1-alpha critical value of an f-statistic do.
 #'
 #' @return Vector of size N x 1
 #' @export
@@ -21,15 +21,15 @@
 #' X = matrix(runif(50*5), 50, 5)
 #' Y = matrix(runif(50*2), 50, 2)
 #' MeanOutcomeDifference(X, Y)
-MeanOutcomeDifference <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_trees=100, m_feature=ncol(X), min_leaf=10, alpha_threshold) {
+MeanOutcomeDifference <- function(X, Y, sample_size=trunc(nrow(X) * 0.8), num_trees=100, m_feature=ncol(X), min_leaf=10, alpha_threshold=0) {
   if (ncol(Y) == 1) {
     command = 1
   } else {
     command = 2
   }
 
-  critical_f = qf( 1-alpha_threshold, ncol(Y), nrow(Y)-ncol(Y)-2)
-  
+  critical_f = stats::qf( 1-alpha_threshold, ncol(Y), nrow(Y)-ncol(Y)-2)
+
   treeMeasures <- array(0,dim=c(num_trees, ncol(X), ncol(Y)))
 
   sapply(1:num_trees, function(tree_index){
@@ -81,7 +81,7 @@ MeanOutcomeDifferenceForSingleTree <- function(tree, test_X, test_Y, command, cr
 
       spl_measure <- MeanOutcomeMeasure(split_res$left_y, split_res$right_y)
 
-      if (!is.inf(critical_f)) {
+      if (!is.infinite(critical_f)) {
         n_left <- length(split_res$left_y)
         n_right <- length(split_res$right_y)
         mean_leftnode <- apply(split_res$left_y, 2, mean)

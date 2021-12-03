@@ -11,7 +11,7 @@ MeanSplitImprovement(
   num_trees = 100,
   m_feature = ncol(X),
   min_leaf = 10,
-  critical_F = NaN
+  alpha_threshold = 0
 )
 }
 \arguments{
@@ -31,8 +31,9 @@ to min_leaf samples, then there will be no splitting in that node and this node
 will be considered as a leaf node. Valid input is positive integer, which is less
 than or equal to M (number of training samples)}
 
-\item{critical_F}{critical F test value threshold for split significant testing. If defualt value of NaN is specified,
-all the node splits will contribute to result.}
+\item{alpha_threshold}{threshold for split significant testing. If default value of 0 is specified,
+all the node splits will contribute to result, otherwise only those splits with improvement greater
+than 1-alpha critical value of an f-statistic do.}
 }
 \value{
 Vector of size N x 1
