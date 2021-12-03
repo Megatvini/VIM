@@ -1,5 +1,5 @@
 Package: MulvariateRandomForestVarImp
-Title: Variable Imporances for Multivariate Random Forests
+Title: Variable Importance Measures for Multivariate Random Forests
 Version: 0.0.1
 Authors@R: 
     c(person("Sikdar", "Sharmistha", email = "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
@@ -7,9 +7,9 @@ Authors@R:
     person("Kadiyali","Vrinda", email = "kadiayali@cornell.edu", role="ctb"),
     person("Dogonadze","Nika", email = "nika.dogonadze@toptal.com", role="cre"))
 Description: Calculates post-hoc variable importance measures for multivariate random forests. 
-  These are given by split improvement for splits defined by feature j as measured using user-defined (ie training or test) examples.
-  Importances can also be calculated on a per-outcome variable basis using the change in predictions for each split. Both measures can be
-  optionally threshholded to include only splits that produce statistically significant changes as measured by an F-test. 
+  These are given by split improvement for splits defined by feature j as measured using user-defined (i.e. training or test) examples.
+  Importance measures can also be calculated on a per-outcome variable basis using the change in predictions for each split. Both measures can be
+  optionally thresholded to include only splits that produce statistically significant changes as measured by an F-test. 
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

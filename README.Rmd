@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of MulvariateRandomForestVarImp package is to calculate post-hoc variable importance measures for multivariate random forests. These are given by split improvement for splits defined by feature j as measured using user-defined (ie training or test) examples. Importances can also be calculated on a per-outcome variable basis using the change in predictions for each split. Both measures can be optionally threshholded to include only splits that produce statistically significant changes as measured by an F-test. 
+The goal of MulvariateRandomForestVarImp package is to calculates post-hoc variable importance measures for multivariate random forests. These are given by split improvement for splits defined by feature j as measured using user-defined (i.e. training or test) examples. Importance measures can also be calculated on a per-outcome variable basis using the change in predictions for each split. Both measures can be optionally thresholded to include only splits that produce statistically significant changes as measured by an F-test. 
 
 ## Installation
 
