@@ -15,6 +15,23 @@
 #' than 1-alpha critical value of an f-statistic do.
 #'
 #' @return Vector of size N x 1
+#' @details 
+#' For each split defined by feature j, the mean outcome difference importance function calculates the absolute 
+#' difference in mean values per outcome between the left and right children nodes of the resultant split. With a 
+#' multivariate outcome vector, this measure thus gives a vector of importance measures for feature j, i.e., it returns 
+#' an outcome specific importance measure for feature j. If feature j is used in splitting M nodes of the tree, the 
+#' resulting tree-specific importance measure is the sum of the node-specific absolute differences in mean nodal 
+#' values per outcome calculated across all M nodes. For the multivariate random forest, the mean outcome difference 
+#' importance measure for feature j is the average of the tree-specific measures across all trees in the forest.
+#' 
+#' If the alpha threshold is 0 all the splits defined by feature j will be used in computing the importance measure. 
+#' The user also has the option of including only the significant node splits defined by feature j in the calculation 
+#' of the importance measure.  The significance of node splits is measured using an F-test. In this case, the user will 
+#" need to threshold the alpha critical value of the F-statistic based on the number of outcome variables in the target 
+#' matrix and the number of left and right node samples for the given node split.
+#' 
+#' Segal MR (1992) Tree-structured methods for longitudinal data. J. American Stat. Assoc. 87(418), 407-418.
+#' 
 #' @export
 #'
 #' @examples
