@@ -1,6 +1,6 @@
 Package: MulvariateRandomForestVarImp
 Title: Variable Importance Measures for Multivariate Random Forests
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     c(person("Sikdar", "Sharmistha", email = "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
     person("Hooker", "Giles", email = "ghooker@berkeley.edu", role="aut"),
@@ -23,3 +23,5 @@ Imports:
     MASS (>= 7.3.0)
 URL: https://github.com/Megatvini/VIM/
 BugReports: https://github.com/Megatvini/VIM/issues
+Depends: 
+    R (>= 2.10)
