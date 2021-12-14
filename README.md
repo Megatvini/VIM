@@ -4,6 +4,8 @@
 # MulvariateRandomForestVarImp
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/Megatvini/VIM/workflows/R-CMD-check/badge.svg)](https://github.com/Megatvini/VIM/actions)
 <!-- badges: end -->
 
 The goal of MulvariateRandomForestVarImp package is to calculates
