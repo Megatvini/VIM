@@ -41,6 +41,22 @@ Vector of size N x 1
 \description{
 Mean Split Improvement Importance Function
 }
+\details{
+The mean split improvement importance function follows directly from Segal (1992) definition of the
+mean structure based split function. For each split defined by feature j, it calculates the difference between the within
+parent node sum of squares and the within children-nodes (left and right nodes) measured on either training or testing samples.
+If feature j is used in splitting M nodes of the tree, the resulting tree-specific importance measure is the sum of the
+node-specific differences calculated across all M nodes. The mean split improvement measure for feature j for the multivariate
+random forest is the average of the tree-specific measures across all trees in the forest.
+
+If the alpha threshold is 0 all the splits defined by feature j will be used in computing the importance measure. The user also has
+the option of including only the significant node splits defined by feature j in the calculation of the importance measure.  The
+significance of node splits is measured using an F-test. In this case, the user will need to threshold the alpha critical value of
+the F-statistic based on the number of outcome variables in the target matrix and the number of left and right node samples
+for the given node split.
+
+Segal MR (1992) Tree-structured methods for longitudinal data. J. American Stat. Assoc. 87(418), 407-418.
+}
 \examples{
 X = matrix(runif(50*5), 50, 5)
 Y = matrix(runif(50*2), 50, 2)

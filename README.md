@@ -38,20 +38,21 @@ This is a basic example which shows you how use the package:
 ``` r
 library(MulvariateRandomForestVarImp)
 ## basic example code
+set.seed(49)
 
 X <- matrix(runif(50*5), 50, 5)
 Y <- matrix(runif(50*2), 50, 2)
 
 split_improvement_importance <- MeanSplitImprovement(X, Y)
 split_improvement_importance
-#> [1] 1.290106 1.108137 1.956719 1.916603 2.482978
+#> [1] 0.8066173 2.8909635 3.4591123 0.6227943 0.5138745
 
 mean_outccome_diff_importance <- MeanOutcomeDifference(X, Y)
 mean_outccome_diff_importance
 #>           [,1]      [,2]
-#> [1,] 0.2350547 0.1496544
-#> [2,] 0.2042492 0.1378401
-#> [3,] 0.3373588 0.2527277
-#> [4,] 0.3425937 0.1611855
-#> [5,] 0.2626985 0.2430743
+#> [1,] 0.2458139 0.3182474
+#> [2,] 0.2712269 0.2915053
+#> [3,] 0.2125802 0.2023291
+#> [4,] 0.2819759 0.2519035
+#> [5,] 0.1238451 0.1958629
 ```

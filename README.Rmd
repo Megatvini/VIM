@@ -41,6 +41,7 @@ This is a basic example which shows you how use the package:
 ```{r example}
 library(MulvariateRandomForestVarImp)
 ## basic example code
+set.seed(49)
 
 X <- matrix(runif(50*5), 50, 5)
 Y <- matrix(runif(50*2), 50, 2)
