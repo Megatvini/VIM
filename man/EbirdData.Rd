@@ -12,7 +12,7 @@ EbirdData
 }
 \format{
   List containing
-  \itemize{
+  \describe{
     \item{trainX,testX1}{ data frames containing covariates for 
 		training (14037 by 87) and test (500 by 87) sets for the Ebird data.
 	}
