@@ -1,6 +1,6 @@
 SplitDataset <- function(sub_test_X, sub_test_Y, split_var, split_point) {
   result <- list()
-  if (inherits(sub_test_X[, split_var]), "numeric")) {
+  if (inherits(sub_test_X[, split_var], "numeric")) {
     left_index <- sub_test_X[, split_var] <= split_point
     right_index <- sub_test_X[, split_var] > split_point
 
