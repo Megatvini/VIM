@@ -1,12 +1,14 @@
 Package: MulvariateRandomForestVarImp
 Title: Variable Importance Measures for Multivariate Random Forests
 Version: 0.0.6
-Author: 
-    c(person("Sikdar", "Sharmistha", email = "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
-    person("Hooker", "Giles", email = "ghooker@berkeley.edu", role="aut"),
-    person("Kadiyali","Vrinda", email = "kadiayali@cornell.edu", role="ctb"),
-    person("Dogonadze","Nika", email = "nika.dogonadze@toptal.com", role="cre"))
-Maintainer: Shmarmistha Sikdar <sharmistha.sikdar@tuck.dartmouth.edu>
+Authors@R: 
+    c(
+        person("Dogonadze","Nika", email = "nika.dogonadze@toptal.com", role="cre"),
+        person("Sikdar", "Sharmistha", email = "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
+        person("Hooker", "Giles", email = "ghooker@berkeley.edu", role="aut"),
+        person("Kadiyali", "Vrinda", email = "kadiayali@cornell.edu", role="ctb")
+    )
+Maintainer: Dogonadze Nika <nika.dogonadze@toptal.com>
 Description: Calculates two sets of post-hoc variable importance measures for multivariate random forests. The first set of variable importance measures are given by the sum of mean split improvements for splits defined by feature j measured on user-defined examples (i.e., training or testing samples). The second set of importance measures are calculated on a per-outcome variable basis as the sum of mean absolute difference of node values for each split defined by feature j measured on user-defined examples (i.e., training or testing samples). The user can optionally threshold both sets of importance measures to include only splits that are statistically significant as measured using an F-test. 
 License: GPL (>= 3)
 Encoding: UTF-8
