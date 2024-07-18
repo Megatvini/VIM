@@ -1,6 +1,6 @@
 Package: MulvariateRandomForestVarImp
 Title: Variable Importance Measures for Multivariate Random Forests
-Version: 0.0.5
+Version: 0.0.6
 Author: 
     c(person("Sikdar", "Sharmistha", email = "sharmistha.sikdar@tuck.dartmouth.edu", role = "aut"),
     person("Hooker", "Giles", email = "ghooker@berkeley.edu", role="aut"),
