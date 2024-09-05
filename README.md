@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/Megatvini/VIM/workflows/R-CMD-check/badge.svg)](https://github.com/Megatvini/VIM/actions)
 <!-- badges: end -->
 
-The goal of MulvariateRandomForestVarImp package is to calculates
+The goal of MulvariateRandomForestVarImp package is to calculate
 post-hoc variable importance measures for multivariate random forests.
 These are given by split improvement for splits defined by feature j as
 measured using user-defined (i.e. training or test) examples. Importance
